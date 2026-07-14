@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#6c63ff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="INSOMNIA">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <title>INSOMNIA - Radio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a1a;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #1a0a2e, #16213e);
+            border-bottom: 2px solid #6c63ff;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            letter-spacing: 8px;
+            color: #6c63ff;
+            text-shadow: 0 0 20px #6c63ff;
+        }
+
+        header p {
+            margin-top: 10px;
+            color: #888;
+            letter-spacing: 3px;
+        }
+
+        .player {
+            text-align: center;
+            padding: 40px 20px;
+            background: #0f0f2a;
+        }
+
+        .player h2 {
+            margin-bottom: 20px;
+            color: #6c63ff;
+        }
+
+        .player-btn {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            background: #6c63ff;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .player-btn:hover {
+            background: #5a52d5;
+            box-shadow: 0 0 20px #6c63ff;
+        }
+
+        .on-air {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #ff4444;
+        }
+
+        .on-air span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #ff4444;
+            border-radius: 50%;
+            margin-right: 5px;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .schedule {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .schedule h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #6c63ff;
+            font-size: 1.8rem;
+        }
+
+        .schedule-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 20px;
+            border-bottom: 1px solid #1a1a3a;
+            transition: background 0.3s;
+        }
+
+        .schedule-item:hover {
+            background: #1a1a3a;
+        }
+
+        .schedule-item .time {
+            color: #6c63ff;
+            font-weight: bold;
+        }
+
+        .schedule-item .show {
+            color: #ccc;
+        }
+
+        .contact {
+            text-align: center;
+            padding: 40px 20px;
+            background: #0f0f2a;
+        }
+
+        .contact h2 {
+            margin-bottom: 20px;
+            color: #6c63ff;
+        }
+
+        .contact p {
+            color: #888;
+            margin: 5px 0;
+        }
+
+        .contact a {
+            color: #6c63ff;
+            text-decoration: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #444;
+            font-size: 0.8rem;
+        }
+
+        .visualizer {
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+            margin: 20px 0;
+            height: 40px;
+            align-items: flex-end;
+        }
+
+        .bar {
+            width: 4px;
+            background: #6c63ff;
+            animation: sound 0.5s infinite alternate;
+        }
+
+        @keyframes sound {
+            from { height: 5px; }
+            to { height: 30px; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 20px #6c63ff; }
+            50% { box-shadow: 0 0 40px #6c63ff, 0 0 60px #6c63ff; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="INSOMNIA_perfil.png" alt="INSOMNIA" style="width: 300px; height: auto; margin-bottom: 15px;">
+        <h1>INSOMNIA</h1>
+        <p>LA RADIO QUE NO DUERME</p>
+    </header>
+
+    <section class="player">
+        <h2>EN VIVO</h2>
+        <div class="visualizer">
+            <div class="bar" style="animation-delay: 0.1s;"></div>
+            <div class="bar" style="animation-delay: 0.2s;"></div>
+            <div class="bar" style="animation-delay: 0.3s;"></div>
+            <div class="bar" style="animation-delay: 0.4s;"></div>
+            <div class="bar" style="animation-delay: 0.5s;"></div>
+            <div class="bar" style="animation-delay: 0.6s;"></div>
+            <div class="bar" style="animation-delay: 0.7s;"></div>
+            <div class="bar" style="animation-delay: 0.8s;"></div>
+            <div class="bar" style="animation-delay: 0.9s;"></div>
+            <div class="bar" style="animation-delay: 1.0s;"></div>
+        </div>
+        <button class="player-btn" id="playBtn">ESCUCHAR</button>
+        <div class="on-air"><span></span> EN VIVO AHORA</div>
+        <p style="margin-top: 10px; color: #666; font-size: 0.85rem;">URL del stream: <em>tu-stream-url.aac</em></p>
+    </section>
+
+    <section class="schedule">
+        <h2>PROGRAMACION</h2>
+        <div class="schedule-item">
+            <span class="time">00:00 - 02:00</span>
+            <span class="show">Noche Insomne</span>
+        </div>
+        <div class="schedule-item">
+            <span class="time">02:00 - 04:00</span>
+            <span class="show">Lo Mejor del Rock</span>
+        </div>
+        <div class="schedule-item">
+            <span class="time">04:00 - 06:00</span>
+            <span class="show">Electronica Total</span>
+        </div>
+        <div class="schedule-item">
+            <span class="time">06:00 - 08:00</span>
+            <span class="show">Buenos Dias Insomnia</span>
+        </div>
+        <div class="schedule-item">
+            <span class="time">08:00 - 10:00</span>
+            <span class="show">El Show de la Manana</span>
+        </div>
+        <div class="schedule-item">
+            <span class="time">10:00 - 12:00</span>
+            <span class="show">Hits del Dia</span>
+        </div>
+        <div class="schedule-item">
+            <span class="time">12:00 - 14:00</span>
+            <span class="show">Mediordia Insomne</span>
+        </div>
+        <div class="schedule-item">
+            <span class="time">14:00 - 16:00</span>
+            <span class="show">Pop & Latin</span>
+        </div>
+        <div class="schedule-item">
+            <span class="time">16:00 - 18:00</span>
+            <span class="show">La Tarde Loca</span>
+        </div>
+        <div class="schedule-item">
+            <span class="time">18:00 - 20:00</span>
+            <span class="show">Vuelta a Casa</span>
+        </div>
+        <div class="schedule-item">
+            <span class="time">20:00 - 22:00</span>
+            <span class="show">Prime Time</span>
+        </div>
+        <div class="schedule-item">
+            <span class="time">22:00 - 00:00</span>
+            <span class="show">La Noche Insomne</span>
+        </div>
+    </section>
+
+    <section class="contact">
+        <h2>CONTACTO</h2>
+        <p>Email: <a href="mailto:info@insomniaradio.com">info@insomniaradio.com</a></p>
+        <p>Telefono: 622 670 987</p>
+        <p>Instagram: @insomniaradio</p>
+    </section>
+
+    <section class="contact" style="background: #1a0a2e;">
+        <h2>DESCARGA LA APP</h2>
+        <a href="INSOMNIA_Radio.apk" download style="display:inline-block; padding:15px 40px; font-size:1.2rem; background:#6c63ff; color:#fff; border:none; border-radius:30px; text-decoration:none; margin-top:10px;">DESCARGAR APK</a>
+        <p style="margin-top:15px; color:#888; font-size:0.85rem;">Para Android. Al instalar, acepta "fuentes desconocidas".</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 INSOMNIA Radio. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        const playBtn = document.getElementById('playBtn');
+        let audio = null;
+        let playing = false;
+
+        playBtn.addEventListener('click', function() {
+            if (!playing) {
+                audio = new Audio('tu-stream-url.aac');
+                audio.play().catch(() => {
+                    alert('URL del stream no configurada. Edita el index.html con tu URL real.');
+                });
+                playBtn.textContent = 'PAUSAR';
+                playing = true;
+            } else {
+                audio.pause();
+                playBtn.textContent = 'ESCUCHAR';
+                playing = false;
+            }
+        });
+    </script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+    </script>
+</body>
+</html>
