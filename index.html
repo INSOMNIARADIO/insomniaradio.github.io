@@ -201,7 +201,8 @@
             <div class="bar" style="animation-delay: 0.9s;"></div>
             <div class="bar" style="animation-delay: 1.0s;"></div>
         </div>
-        <iframe title="RADIO ONLINE" width="100%" height="400" scrolling="no" src="https://players.lhdserver.es/player/insomniarv/index3.php" frameborder="0" allowfullscreen style="margin: 20px auto; display: block; border-radius: 10px;"></iframe>
+        <button class="player-btn" id="playBtn">ESCUCHAR</button>
+        <div class="on-air"><span></span> EN VIVO AHORA</div>
     </section>
 
     <section class="schedule">
@@ -273,6 +274,28 @@
         <p>&copy; 2026 INSOMNIA Radio. Todos los derechos reservados.</p>
     </footer>
 
+    <script>
+        const playBtn = document.getElementById('playBtn');
+        let audio = null;
+        let playing = false;
+
+        playBtn.addEventListener('click', function() {
+            if (!playing) {
+                audio = new Audio('https://eu1.lhdserver.es:8094/stream');
+                audio.load();
+                audio.play().catch(function(e) {
+                    console.error(e);
+                });
+                playBtn.textContent = 'PAUSAR';
+                playing = true;
+            } else {
+                audio.pause();
+                audio = null;
+                playBtn.textContent = 'ESCUCHAR';
+                playing = false;
+            }
+        });
+    </script>
     <script>
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('sw.js');
