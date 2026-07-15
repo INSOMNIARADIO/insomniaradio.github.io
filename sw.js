@@ -1,4 +1,4 @@
-const CACHE_NAME = "insomnia-v1";
+const CACHE_NAME = "insomnia-v3";
 const ASSETS = [
   "/",
   "/index.html",
